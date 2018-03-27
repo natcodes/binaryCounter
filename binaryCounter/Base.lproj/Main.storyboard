@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d4k-pE-Bc9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,20 +11,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="hz4-Xm-HgU">
             <objects>
-                <viewController id="d4k-pE-Bc9" sceneMemberID="viewController">
+                <viewController id="d4k-pE-Bc9" customClass="MainViewController" customModule="binaryCounter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X9x-GP-774">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2wf-EM-6V8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2wf-EM-6V8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="606"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="62" id="eGj-ff-P3G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BinaryCell" rowHeight="62" id="eGj-ff-P3G" customClass="BinaryCell" customModule="binaryCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eGj-ff-P3G" id="t0R-dR-Qhr">
@@ -37,6 +36,9 @@
                                                     <state key="normal" title="-">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="subtractButtonPressed:" destination="eGj-ff-P3G" eventType="touchUpInside" id="d8F-If-Isa"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI9-iQ-SY0">
                                                     <rect key="frame" x="121" y="27" width="200" height="21"/>
@@ -53,6 +55,9 @@
                                                     <state key="normal" title="+">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="addButtonPressed:" destination="eGj-ff-P3G" eventType="touchUpInside" id="CVr-sC-MLe"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,20 +71,38 @@
                                                 <constraint firstAttribute="trailing" secondItem="KFw-KR-1kB" secondAttribute="trailing" constant="16" id="k2b-J9-5Ad"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="valueLabel" destination="fI9-iQ-SY0" id="mey-n4-6Db"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgQ-I2-V3f">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgQ-I2-V3f">
                                 <rect key="frame" x="0.0" y="609" width="375" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="K7m-nF-9B5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FgQ-I2-V3f" firstAttribute="leading" secondItem="fHv-hz-q31" secondAttribute="leading" id="4nj-Sy-Apm"/>
+                            <constraint firstItem="FgQ-I2-V3f" firstAttribute="trailing" secondItem="fHv-hz-q31" secondAttribute="trailing" id="AaW-qk-Api"/>
+                            <constraint firstItem="FgQ-I2-V3f" firstAttribute="bottom" secondItem="fHv-hz-q31" secondAttribute="bottom" id="OCr-TA-BOM"/>
+                            <constraint firstItem="2wf-EM-6V8" firstAttribute="top" secondItem="X9x-GP-774" secondAttribute="top" id="XFB-1R-3fa"/>
+                            <constraint firstItem="FgQ-I2-V3f" firstAttribute="top" secondItem="2wf-EM-6V8" secondAttribute="bottom" constant="3" id="fqA-zB-BM2"/>
+                            <constraint firstItem="2wf-EM-6V8" firstAttribute="leading" secondItem="fHv-hz-q31" secondAttribute="leading" id="kAM-r6-jIS"/>
+                            <constraint firstItem="2wf-EM-6V8" firstAttribute="trailing" secondItem="fHv-hz-q31" secondAttribute="trailing" id="sl2-2S-s9B"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fHv-hz-q31"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="2wf-EM-6V8" id="2Yu-Wn-VPF"/>
+                        <outlet property="totalLabel" destination="FgQ-I2-V3f" id="Qpc-Fn-9UK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAc-aN-o4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
